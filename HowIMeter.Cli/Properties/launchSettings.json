@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HowIMeter.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": "--logLevel info query http://www.eortc.be -c 5"
+    }
+  }
+}

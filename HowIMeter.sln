@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowIMeter.Cli", "HowIMeter.Cli\HowIMeter.Cli.csproj", "{19C64169-8D57-4EF0-83C8-A5BBE38B45CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowIMeter.Engine", "HowIMeter.Engine\HowIMeter.Engine.csproj", "{BD75061C-2F9C-435E-B02E-622A52894468}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowIMeter.Engine.Tests", "HowIMeter.Engine.Tests\HowIMeter.Engine.Tests.csproj", "{A4FFD208-B106-4E59-AD27-435F41F7908B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowIMeter.Ioc", "HowIMeter.Ioc\HowIMeter.Ioc.csproj", "{719C8B1A-6EB3-43F3-8AAD-668ED3C3C4D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{84D8A085-7C49-47DB-9C92-1960209F91FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowIMeter.Ioc.Configuration", "HowIMeter.Ioc.Configuration\HowIMeter.Ioc.Configuration.csproj", "{3BB5204E-BF5B-492B-BA7C-310A8C5F3ED1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3FE299F6-D420-4868-8AA1-91B2ACFD3064}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cli", "Cli", "{7B6AEB5E-4070-481F-8576-EBA5AD367EE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19C64169-8D57-4EF0-83C8-A5BBE38B45CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19C64169-8D57-4EF0-83C8-A5BBE38B45CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19C64169-8D57-4EF0-83C8-A5BBE38B45CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19C64169-8D57-4EF0-83C8-A5BBE38B45CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD75061C-2F9C-435E-B02E-622A52894468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD75061C-2F9C-435E-B02E-622A52894468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD75061C-2F9C-435E-B02E-622A52894468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD75061C-2F9C-435E-B02E-622A52894468}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4FFD208-B106-4E59-AD27-435F41F7908B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4FFD208-B106-4E59-AD27-435F41F7908B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4FFD208-B106-4E59-AD27-435F41F7908B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4FFD208-B106-4E59-AD27-435F41F7908B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{719C8B1A-6EB3-43F3-8AAD-668ED3C3C4D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{719C8B1A-6EB3-43F3-8AAD-668ED3C3C4D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{719C8B1A-6EB3-43F3-8AAD-668ED3C3C4D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{719C8B1A-6EB3-43F3-8AAD-668ED3C3C4D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BB5204E-BF5B-492B-BA7C-310A8C5F3ED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BB5204E-BF5B-492B-BA7C-310A8C5F3ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BB5204E-BF5B-492B-BA7C-310A8C5F3ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BB5204E-BF5B-492B-BA7C-310A8C5F3ED1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{19C64169-8D57-4EF0-83C8-A5BBE38B45CF} = {7B6AEB5E-4070-481F-8576-EBA5AD367EE1}
+		{BD75061C-2F9C-435E-B02E-622A52894468} = {3FE299F6-D420-4868-8AA1-91B2ACFD3064}
+		{A4FFD208-B106-4E59-AD27-435F41F7908B} = {3FE299F6-D420-4868-8AA1-91B2ACFD3064}
+		{719C8B1A-6EB3-43F3-8AAD-668ED3C3C4D7} = {84D8A085-7C49-47DB-9C92-1960209F91FC}
+		{3BB5204E-BF5B-492B-BA7C-310A8C5F3ED1} = {84D8A085-7C49-47DB-9C92-1960209F91FC}
+	EndGlobalSection
+EndGlobal
