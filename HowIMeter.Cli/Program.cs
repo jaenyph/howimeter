@@ -9,8 +9,6 @@ namespace HowIMeter.Cli
         {
             using (IocContainer.Current)
             {
-                LoggingSetup.Setup();
-
                 //var application = CommandLineApplicationSetup.Setup();
 
                 try

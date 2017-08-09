@@ -52,24 +52,33 @@ namespace HowIMeter.Cli
 
         private static void AdaptLoggingVerbosity(string value)
         {
+            Level currentLogginLevel;
             switch (value?.ToLower())
             {
+                case "d":
                 case "debug":
-                    Logger.Current.Logger.Repository.Threshold = Level.Debug;
+                    currentLogginLevel = Level.Debug;
                     break;
-                case null:
+
+                case "e":
                 case "error":
-                    Logger.Current.Logger.Repository.Threshold = Level.Error;
+                case null:
+                    currentLogginLevel = Level.Error;
                     break;
+
+                case "f":
                 case "fatal":
-                    Logger.Current.Logger.Repository.Threshold = Level.Fatal;
+                    currentLogginLevel = Level.Fatal;
                     break;
+
+                case "i":
                 case "info":
-                    Logger.Current.Logger.Repository.Threshold = Level.Info;
+                    currentLogginLevel = Level.Info;
                     break;
                 default:
                     throw new InvalidOperationException($"Unhandled verbosity '{value}'");
             }
+            LoggingSetup.Setup(currentLogginLevel);
         }
     }
 }
