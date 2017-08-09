@@ -20,8 +20,7 @@ namespace HowIMeter.Cli.Commands
                 Logger.Current.Info(
                     $"Launching {_count} parallel queries on '{_uri}' ...");
 
-
-            var result = new HttpParallelWorkersLauncher(_count, _uri).Launch();
+            var result = new HttpParallelWorkersLauncher(_count, _uri, ApplicationContext.Current.DefaultBinaryProfiler).Launch();
 
             if (Logger.Current.IsInfoEnabled)
                 Logger.Current.Info($"All {_count} queries run with result '{result}'");

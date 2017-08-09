@@ -1,4 +1,7 @@
-﻿namespace HowIMeter.Engine.Web.Http
+﻿using System.IO;
+using System.Threading.Tasks;
+
+namespace HowIMeter.Engine.Web.Http
 {
     public interface IHttpRequest : IWebRequest
     {
@@ -9,5 +12,7 @@
 
 
         bool HaveResponse { get; }
+
+        Task<Stream> GetRequestStreamAsync();
     }
 }

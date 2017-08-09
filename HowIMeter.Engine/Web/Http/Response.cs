@@ -1,13 +1,12 @@
-﻿using System.Net;
-using HowIMeter.Engine.Workers;
+﻿using HowIMeter.Engine.Workers;
 
 namespace HowIMeter.Engine.Web.Http
 {
     public class Response : IWorkerResult
     {
-        private readonly WebResponse _response;
+        private readonly IHttpResponse _response;
 
-        internal Response(WebResponse response)
+        internal Response(IHttpResponse response)
         {
             _response = response;
         }

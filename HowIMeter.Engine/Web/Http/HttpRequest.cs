@@ -1,20 +1,21 @@
 ﻿using System;
+using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace HowIMeter.Engine.Web.Http
 {
+    /// <summary>
+    ///     A wrapper for HttpWebRequest that implements IHttpRequest
+    /// </summary>
     internal class HttpRequest : IHttpRequest
     {
         private readonly HttpWebRequest _request;
 
-        public HttpRequest(string uri)
-        {
-            _request = WebRequest.CreateHttp(uri);
-        }
-
         public HttpRequest(Uri uri)
         {
             _request = WebRequest.CreateHttp(uri);
+            _request.GetRequestStreamAsync();
         }
 
         public int ContinueTimeout => _request.ContinueTimeout;
@@ -47,6 +48,11 @@ namespace HowIMeter.Engine.Web.Http
 
         public bool HaveResponse => _request.HaveResponse;
 
+        public Task<Stream> GetRequestStreamAsync()
+        {
+            return _request.GetRequestStreamAsync();
+        }
+
         public bool UseDefaultCredentials
         {
             get => _request.UseDefaultCredentials;
@@ -68,6 +74,11 @@ namespace HowIMeter.Engine.Web.Http
         public void Abort()
         {
             _request.Abort();
+        }
+
+        public Task<HttpResponse> GetResponseAsync()
+        {
+            return _request.GetResponseAsync().ContinueWith(task => new HttpResponse((HttpWebResponse) task.Result));
         }
     }
 }
