@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace HowIMeter.Cli
 {
@@ -8,7 +6,9 @@ namespace HowIMeter.Cli
     {
         NoError = 0,
         GeneralError = -1,
+        [Display(Description = "Invalid arguments")]
         InvalidCliArgument = -2,
+        [Display(Description = "The provided uri is invalid")]
         InvalidUri
     }
 }

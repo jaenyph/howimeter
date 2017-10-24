@@ -1,20 +1,21 @@
-﻿using HowIMeter.Cli.Web.Http;
+﻿using System;
+using HowIMeter.Cli.Web.Http;
 
 namespace HowIMeter.Cli.Commands
 {
-    internal class QueryCommand : ICommand
+    internal class QueryCommand : Command
     {
         private readonly int _count;
 
-        private readonly string _uri;
+        private readonly Uri _uri;
 
-        public QueryCommand(string uri, int count)
+        public QueryCommand(CommandLineOptions options, Uri uri, int count) :base(options)
         {
             _uri = uri;
             _count = count;
         }
 
-        public ApplicationErrorKind Run()
+        protected override ApplicationErrorKind CoreRun()
         {
             if (Logger.Current.IsInfoEnabled)
                 Logger.Current.Info(

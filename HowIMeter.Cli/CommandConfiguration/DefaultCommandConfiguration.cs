@@ -11,7 +11,7 @@ namespace HowIMeter.Cli.CommandConfiguration
 
             app.OnExecute(() =>
             {
-                options.Command = new DefaultCommand(app);
+                options.Command = new DefaultCommand(options);
                 return (int) ApplicationErrorKind.NoError;
             });
         }

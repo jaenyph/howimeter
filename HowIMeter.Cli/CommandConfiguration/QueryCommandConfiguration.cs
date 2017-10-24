@@ -22,10 +22,8 @@ namespace HowIMeter.Cli.CommandConfiguration
                 CommandOptionType.SingleValue);
 
             
-
             command.OnExecute(() =>
             {
-
                 var count = 1;
                 if (countOption.HasValue())
                 {
@@ -35,7 +33,12 @@ namespace HowIMeter.Cli.CommandConfiguration
                     }
                 }
 
-                options.Command = new QueryCommand(uriArgument.Value, count);
+                if (!Uri.TryCreate(uriArgument.Value, UriKind.RelativeOrAbsolute, out Uri uri) || !uri.IsWellFormedOriginalString())
+                {
+                    return (int) ApplicationErrorKind.InvalidUri;
+                }
+
+                options.Command = new QueryCommand(options, uri, count);
 
                 return 0;
             });

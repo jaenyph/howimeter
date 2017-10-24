@@ -1,4 +1,5 @@
 ﻿using System;
+using HowIMeter.Cli.Profilers;
 using HowIMeter.Engine.Profilers;
 
 namespace HowIMeter.Cli
@@ -11,6 +12,7 @@ namespace HowIMeter.Cli
         
         private ApplicationContext()
         {
+            _defaultBinaryProfiler = new SimpleCliBinaryProfiler(0,0);
         }
 
         public IBinaryProfiler DefaultBinaryProfiler

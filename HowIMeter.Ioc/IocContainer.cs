@@ -3,7 +3,7 @@ using SimpleInjector;
 
 namespace HowIMeter.Ioc
 {
-    public class IocContainer
+    public static class IocContainer
     {
         private static readonly GenericServiceProvider ServiceProvider;
 

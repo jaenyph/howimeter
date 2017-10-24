@@ -2,16 +2,16 @@
 
 namespace HowIMeter.Cli.Commands
 {
-    internal class DefaultCommand : ICommand
+    internal class DefaultCommand : Command
     {
         private readonly CommandLineApplication _app;
 
-        public DefaultCommand(CommandLineApplication app)
+        public DefaultCommand(CommandLineOptions options) : base(options)
         {
-            _app = app;
+            _app = CurrentCommandLineOptions.Application;
         }
 
-        public ApplicationErrorKind Run()
+        protected override ApplicationErrorKind CoreRun()
         {
             _app.ShowHelp();
 

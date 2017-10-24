@@ -5,31 +5,26 @@ namespace HowIMeter.Ioc
 {
     public class GenericServiceProvider : IGenericServiceProvider
     {
-        private readonly Container _container;
-
-        internal Container Container
-        {
-            get => _container;
-        }
+        internal Container Container { get; }
 
         public GenericServiceProvider(Container container)
         {
-            _container = container;
+            Container = container;
         }
         public object GetService(Type serviceType)
         {
-            return _container.GetInstance(serviceType);
+            return Container.GetInstance(serviceType);
         }
 
         public TService GetService<TService>()
             where TService:class 
         {
-            return _container.GetInstance<TService>();
+            return Container.GetInstance<TService>();
         }
 
         public void Dispose()
         {
-            _container?.Dispose();
+            Container?.Dispose();
         }
     }
 }

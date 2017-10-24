@@ -11,6 +11,11 @@ namespace HowIMeter.Cli
     {
         public const string DefaultHelpOptionTemplate = "-?|-h|--help";
 
+        private CommandLineOptions()
+        {
+            CurrentApplicationErrorStatus = ApplicationErrorKind.NoError;
+        }
+
         public static CommandLineOptions Parse(string[] args)
         {
             var options = new CommandLineOptions();
@@ -26,59 +31,28 @@ namespace HowIMeter.Cli
                 () => Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()
                     .InformationalVersion);
 
-            var verbosityOption = app.Option(
+            options.LogginVerbosityOption = app.Option(
                 "-l|--logLevel <logLevel>",
                 "Cli verbosity",
                 CommandOptionType.SingleValue);
 
-            
+            options.Application = app;
+
+            //AdaptLoggingVerbosity(verbosityOption.Value());
+
             DefaultCommandConfiguration.Configure(app, options);
 
-            var result = app.Execute(args);
-
-            if (result != 0)
-            {
-                return null;
-            }
-
-            AdaptLoggingVerbosity(verbosityOption.Value());
-
-
+            options.CurrentApplicationErrorStatus = (ApplicationErrorKind) app.Execute(args);
+            
             return options;
         }
 
+        public CommandOption LogginVerbosityOption { get; private set; }
+
+        public CommandLineApplication Application { get; private set; }
+
+        public ApplicationErrorKind CurrentApplicationErrorStatus { get; private set; }
         public ICommand Command { get; set; }
 
-
-        private static void AdaptLoggingVerbosity(string value)
-        {
-            Level currentLogginLevel;
-            switch (value?.ToLower())
-            {
-                case "d":
-                case "debug":
-                    currentLogginLevel = Level.Debug;
-                    break;
-
-                case "e":
-                case "error":
-                case null:
-                    currentLogginLevel = Level.Error;
-                    break;
-
-                case "f":
-                case "fatal":
-                    currentLogginLevel = Level.Fatal;
-                    break;
-
-                case "i":
-                case "info":
-                    currentLogginLevel = Level.Info;
-                    break;
-                default:
-                    throw new InvalidOperationException($"Unhandled verbosity '{value}'");
-            }
-            LoggingSetup.Setup(currentLogginLevel);
-        }
     }
 }

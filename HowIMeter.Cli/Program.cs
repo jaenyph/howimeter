@@ -9,27 +9,38 @@ namespace HowIMeter.Cli
         {
             using (IocContainer.Current)
             {
-                //var application = CommandLineApplicationSetup.Setup();
-
                 try
                 {
                     var options = CommandLineOptions.Parse(args);
 
-                    if (options?.Command == null)
+                    if (options.CurrentApplicationErrorStatus != ApplicationErrorKind.NoError)
                     {
-                        // DefaultCommand will have printed help
-                        return (int) ApplicationErrorKind.GeneralError;
+                        return ExitWith(options.CurrentApplicationErrorStatus);
+                    }
+                    if(options.Command == null)
+                    {
+                        // DefaultCommand will have printed help 
+                        return ExitWith(ApplicationErrorKind.GeneralError);
                     }
 
-                    return (int) options.Command.Run();
+                    return ExitWith(options.Command.Run());
                 }
                 catch (CommandParsingException e)
                 {
                     Logger.Current.Error(e.Message);
-                    return (int) ApplicationErrorKind.InvalidCliArgument;
+                    return ExitWith(ApplicationErrorKind.InvalidCliArgument);
                 }
 
             }
+        }
+
+        private static int ExitWith(ApplicationErrorKind status)
+        {
+            if (Logger.Current.IsInfoEnabled)
+            {
+                Logger.Current.Info($"Exiting with status {(int)status}");
+            }
+            return (int) status;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using HowIMeter.Engine.Profilers;
 using HowIMeter.Engine.Workers;
@@ -20,13 +21,14 @@ namespace HowIMeter.Engine.Web.Http
         public async Task<IWorkerResult> Run()
         {
             var httpRequest = new HttpRequest(Uri);
-            return await httpRequest.GetResponseAsync().ContinueWith(response =>
+
+            return await httpRequest.GetRequestStreamAsync().ContinueWith(request =>
             {
-                httpRequest.GetRequestStreamAsync().ContinueWith(request =>
-                {
-                    
-                });
-                return new Response(response.Result);
+                var length = Convert.ToInt32(request.Result.Length);
+                _profiler.OnBytesWrote(null, length);
+            }).ContinueWith((task) =>
+            {
+                return httpRequest.GetResponseAsync().ContinueWith(response => new Response(response.Result)).Result;
             });
         }
     }
